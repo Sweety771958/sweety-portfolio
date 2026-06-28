@@ -30,12 +30,38 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const [themeLabel, setThemeLabel] = useState<'Light' | 'Dark'>('Dark');
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const readTheme = () => {
+      try {
+        const t = document.documentElement.getAttribute('data-theme');
+        setThemeLabel(t === 'light' ? 'Light' : 'Dark');
+      } catch (e) {}
+    };
+    readTheme();
+
+    // storage event for other tabs
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === 'theme') readTheme();
+    };
+    window.addEventListener('storage', onStorage);
+
+    // MutationObserver for attribute changes on html (data-theme or class)
+    const obs = new MutationObserver(() => readTheme());
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      obs.disconnect();
+    };
   }, []);
 
   return (
@@ -62,6 +88,10 @@ export default function Navbar() {
         </motion.div>
         <div className="flex items-center gap-3">
           <ThemeToggle />
+          <span className="ml-2 inline-flex items-center rounded-full border border-theme bg-theme-95 px-3 py-1 text-xs font-medium text-muted-2">
+            <span className="mr-2 h-2 w-2 rounded-full" aria-hidden style={{ backgroundColor: themeLabel === 'Light' ? 'var(--cyan-300)' : 'var(--muted-3)' }} />
+            {themeLabel}
+          </span>
         </div>
 
           <motion.button
