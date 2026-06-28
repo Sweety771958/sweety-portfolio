@@ -19,13 +19,14 @@ export const metadata: Metadata = {
   description: "Professional portfolio website for Dr. Sweety Pal, presenting research, publications, education, and contact information.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   // Determine initial theme from server cookie (if present)
-  const themeCookie = cookies().get("theme");
+  const cookiesList = await cookies();
+  const themeCookie = cookiesList.get("theme");
   const initialTheme = themeCookie ? (themeCookie.value === "light" ? "light" : "dark") : undefined;
 
   const htmlClass = `${geistSans.variable} ${geistMono.variable} h-full antialiased` + (initialTheme === "light" ? " light" : "");
