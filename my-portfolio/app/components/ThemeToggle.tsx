@@ -61,11 +61,11 @@ export default function ThemeToggle() {
           initial={{ opacity: 0, y: -4, scale: 0.9, rotate: 0 }}
           animate={
             isLight
-              ? { opacity: 1, y: 0, scale: [1, 1.08, 1], rotate: [0, 24, 0] }
-              : { opacity: 1, y: 0, scale: [1, 1.04, 1], rotate: [0, 0, 0] }
+              ? { opacity: 1, y: 0, scale: [1, 1.12, 1], rotate: [0, 32, 0] }
+              : { opacity: 1, y: 0, scale: [1, 1.06, 1], rotate: [0, 0, 0] }
           }
-          exit={{ opacity: 0, y: 4, scale: 0.9, rotate: 0 }}
-          transition={{ duration: 0.36, times: [0, 0.5, 1], type: "spring", stiffness: 480, damping: 28 }}
+          exit={{ opacity: 0, y: 6, scale: 0.88, rotate: 0 }}
+          transition={{ duration: 0.28, times: [0, 0.5, 1], type: "spring", stiffness: 700, damping: 40 }}
           className="flex items-center"
         >
           {isLight ? (
