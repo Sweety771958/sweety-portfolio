@@ -29,6 +29,10 @@ export default function ThemeToggle() {
     setIsLight(next);
     try {
       localStorage.setItem("theme", next ? "light" : "dark");
+      // also persist as a cookie so server can read it on SSR
+      try {
+        document.cookie = `theme=${next ? "light" : "dark"}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=strict`;
+      } catch (e) {}
     } catch (e) {}
     document.documentElement.classList.toggle("light", next);
     document.documentElement.setAttribute("data-theme", next ? "light" : "dark");
