@@ -1,0 +1,29 @@
+const stats = [
+  { value: "3", label: "Journal Papers" },
+  { value: "4+", label: "Book Chapters" },
+  { value: "66+", label: "Citations" },
+  { value: "Expertise", label: "Biosensor & Nanotechnology" },
+];
+
+export default function Stats() {
+  return (
+    <section className="py-16 bg-white">
+      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+        {stats.map((item) => (
+          <div
+            key={item.label}
+            className="rounded-xl shadow-md p-6 text-center"
+          >
+            <h2 className="text-4xl font-bold text-blue-700">
+              {item.value}
+            </h2>
+
+            <p className="mt-3 text-black-600">
+              {item.label}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
