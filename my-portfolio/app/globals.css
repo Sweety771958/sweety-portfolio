@@ -1,55 +1,49 @@
 @import "tailwindcss";
 
+/* Theme variables (used by both dark and light modes) */
 :root {
-  --background: #020617;
-  --foreground: #f8fafc;
+  --bg: #020617;
+  --fg: #f8fafc;
+  --card: rgba(15,23,42,0.8);
+  --card-95: rgba(15,23,42,0.95);
+  --muted: #94a3b8;
+  --muted-2: #cbd5e1;
+  --muted-3: #e2e8f0;
+  --border: rgba(255,255,255,0.06);
+  --ring: rgba(34,211,238,0.12);
+  --shadow-1: rgba(15,23,42,0.4);
+  --shadow-2: rgba(15,23,42,0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Light mode overrides when `html` has the `light` class */
+.light {
+  --bg: #f8fafc;
+  --fg: #0f172a;
+  --card: rgba(248,250,252,0.95);
+  --card-95: rgba(248,250,252,0.98);
+  --muted: #475569;
+  --muted-2: #64748b;
+  --muted-3: #0f172a;
+  --border: rgba(15,23,42,0.06);
+  --ring: rgba(34,211,238,0.08);
+  --shadow-1: rgba(2,6,23,0.06);
+  --shadow-2: rgba(2,6,23,0.04);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #020617;
-    --foreground: #f8fafc;
+    --bg: #020617;
+    --fg: #f8fafc;
   }
 }
-
-/* Light mode overrides applied when html has the `light` class */
-.light :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-}
-
-.light body {
-  background: #f8fafc;
-  color: #0f172a;
-}
-
-.light .bg-slate-950 { background-color: #f8fafc !important; }
-.light .bg-slate-900\/95 { background-color: rgba(248,250,252,0.98) !important; }
-.light .bg-slate-900\/80 { background-color: rgba(248,250,252,0.95) !important; }
-.light .bg-white\/5 { background-color: rgba(15,23,42,0.03) !important; }
-.light .text-slate-100 { color: #0f172a !important; }
-.light .text-slate-300 { color: #334155 !important; }
-.light .text-slate-400 { color: #475569 !important; }
-.light .text-slate-200 { color: #1f2937 !important; }
-.light .border-white\/10 { border-color: rgba(15,23,42,0.06) !important; }
-.light .ring-cyan-300\/30 { box-shadow: 0 0 0 3px rgba(34,211,238,0.12) !important; }
-.light .shadow-slate-950\/40 { box-shadow: 0 10px 30px rgba(15,23,42,0.04) !important; }
-.light .shadow-slate-950\/30 { box-shadow: 0 8px 24px rgba(15,23,42,0.03) !important; }
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: radial-gradient(circle at top, rgba(56,189,248,0.08), transparent 28%), radial-gradient(circle at bottom, rgba(168,85,247,0.08), transparent 24%), var(--background);
-  color: var(--foreground);
+  background: radial-gradient(circle at top, rgba(56,189,248,0.08), transparent 28%), radial-gradient(circle at bottom, rgba(168,85,247,0.08), transparent 24%), var(--bg);
+  color: var(--fg);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -78,3 +72,26 @@ body {
 .animate-glow {
   animation: pulseGlow 6s ease-in-out infinite;
 }
+
+/* Map common utility classes to theme variables for consistent theming without wholesale markup changes */
+.bg-slate-950 { background-color: var(--bg) !important; }
+.bg-slate-900\/95 { background-color: var(--card-95) !important; }
+.bg-slate-900\/80 { background-color: var(--card) !important; }
+.bg-white\/5 { background-color: rgba(255,255,255,0.03) !important; }
+
+.text-slate-100 { color: var(--fg) !important; }
+.text-slate-300 { color: var(--muted) !important; }
+.text-slate-400 { color: var(--muted-2) !important; }
+.text-slate-200 { color: var(--muted-3) !important; }
+
+.border-white\/10 { border-color: var(--border) !important; }
+.ring-cyan-300\/30 { box-shadow: 0 0 0 3px var(--ring) !important; }
+.shadow-slate-950\/40 { box-shadow: 0 10px 30px var(--shadow-1) !important; }
+.shadow-slate-950\/30 { box-shadow: 0 8px 24px var(--shadow-2) !important; }
+
+/* Ensure navbar background adapts */
+.bg-slate-950\/95 { background-color: rgba(0,0,0,0.6); }
+.light .bg-slate-950\/95 { background-color: rgba(248,250,252,0.92) !important; }
+
+/* small helpers */
+.light a { color: inherit; }
