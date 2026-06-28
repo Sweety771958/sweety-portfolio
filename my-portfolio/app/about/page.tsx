@@ -168,7 +168,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -190,10 +190,10 @@ export default function About() {
             >
               <h2 className="text-2xl font-semibold text-white">Professional Impact</h2>
               <ul className="mt-5 space-y-3 text-slate-300">
-                <li>• Mentored multidisciplinary teams in biomedical sciences and engineering.</li>
-                <li>• Led advanced sensor design for glucose and urea detection.</li>
-                <li>• Published in high-impact journals and authored book chapters.</li>
-                <li>• Delivered conference abstracts and national workshop training.</li>
+                <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"/>Mentored multidisciplinary teams in biomedical sciences and engineering.</li>
+                <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"/>Led advanced sensor design for glucose and urea detection.</li>
+                <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"/>Published in high-impact journals and authored book chapters.</li>
+                <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"/>Delivered conference abstracts and national workshop training.</li>
               </ul>
             </motion.div>
           </div>
@@ -201,7 +201,7 @@ export default function About() {
       </motion.section>
 
       <section className="mx-auto max-w-7xl px-8 py-20">
-        <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
           {aboutCards.map((group, index) => (
             <motion.div
               key={group.label}
@@ -233,7 +233,7 @@ export default function About() {
           <h2 className="mt-4 text-4xl font-bold text-white">Research thesis, experience, and certifications</h2>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
