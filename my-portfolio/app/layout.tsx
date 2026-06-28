@@ -25,6 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <head>
+        {/* Pre-hydration script to apply stored theme before React hydrates */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.add('light');document.documentElement.setAttribute('data-theme','light');}else if(t==='dark'){document.documentElement.classList.remove('light');document.documentElement.setAttribute('data-theme','dark');}else{var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches;if(p){document.documentElement.classList.add('light');document.documentElement.setAttribute('data-theme','light');}else{document.documentElement.classList.remove('light');document.documentElement.setAttribute('data-theme','dark');}}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-full bg-theme text-theme">
         <Navbar />
         {children}
