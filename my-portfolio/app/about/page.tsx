@@ -145,25 +145,25 @@ const abstracts = [
 
 export default function About() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
+    <main className="min-h-screen bg-theme text-theme">
       <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         variants={fadeIn}
-        className="relative overflow-hidden bg-slate-900/95 py-24 px-8"
+        className="relative overflow-hidden bg-surface-95 py-24 px-8"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(56,189,248,0.2),_transparent_45%),radial-gradient(circle_at_bottom_left,_rgba(168,85,247,0.18),_transparent_35%)]" />
         <div className="relative mx-auto max-w-6xl space-y-10">
           <div className="max-w-3xl">
-            <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm uppercase tracking-[0.35em] text-slate-300">
+            <span className="inline-flex rounded-full border border-theme bg-overlay px-4 py-2 text-sm uppercase tracking-[0.35em] text-muted">
               About Dr. Sweety Pal
             </span>
-            <h1 className="mt-6 text-5xl font-black text-white sm:text-6xl">
+            <h1 className="mt-6 text-5xl font-black text-theme sm:text-6xl">
               Profile for leadership in biomedical research.
             </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-300">
+            <p className="mt-6 text-lg leading-8 text-muted">
               Assistant Professor at Shobhit Institute of Engineering & Technology with a strong record of biosensor innovation, computational neuroscience, and translational healthcare research.
             </p>
           </div>
@@ -174,10 +174,10 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)] backdrop-blur-xl"
+              className="rounded-[2rem] border border-theme bg-overlay p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)] backdrop-blur-xl"
             >
-              <h2 className="text-2xl font-semibold text-white">Academic Leadership</h2>
-              <p className="mt-4 text-slate-300 leading-7 text-justify">
+              <h2 className="text-2xl font-semibold text-theme">Academic Leadership</h2>
+              <p className="mt-6 text-muted">
                 Dr. Sweety Pal applies interdisciplinary expertise in biomedical engineering, nanotechnology, and AI to advance novel diagnostics and intelligent health systems. Her research emphasizes non-enzymatic sensing, EEG analytics, and brain-computer interface solutions.
               </p>
             </motion.div>
@@ -186,10 +186,10 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.08 }}
-              className="rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)] backdrop-blur-xl"
+              className="rounded-[2rem] border border-theme bg-overlay p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)] backdrop-blur-xl"
             >
-              <h2 className="text-2xl font-semibold text-white">Professional Impact</h2>
-              <ul className="mt-5 space-y-3 text-slate-300">
+              <h2 className="text-2xl font-semibold text-theme">Professional Impact</h2>
+              <ul className="mt-5 space-y-3 text-muted">
                 <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"/>Mentored multidisciplinary teams in biomedical sciences and engineering.</li>
                 <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"/>Led advanced sensor design for glucose and urea detection.</li>
                 <li className="flex gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"/>Published in high-impact journals and authored book chapters.</li>
@@ -209,15 +209,15 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.65, delay: index * 0.08, ease: "easeOut" }}
-              className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
+              className="rounded-[2rem] border border-theme bg-surface p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
             >
               <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">{group.label}</p>
-              <h2 className="mt-4 text-3xl font-bold text-white">{group.title}</h2>
-              <div className="mt-8 space-y-4 text-slate-300">
+              <h2 className="mt-4 text-3xl font-bold text-theme">{group.title}</h2>
+              <div className="mt-8 space-y-4 text-muted">
                 {group.items.map((item) => (
-                  <div key={item.label} className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                    <p className="font-semibold text-white">{item.label}</p>
-                    {item.detail && <p className="mt-2 text-slate-400">{item.detail}</p>}
+                  <div key={item.label} className="rounded-3xl border border-theme bg-overlay p-5">
+                    <p className="font-semibold text-theme">{item.label}</p>
+                    {item.detail && <p className="mt-2 text-muted-2">{item.detail}</p>}
                     {item.time && <p className="mt-2 text-cyan-300">{item.time}</p>}
                   </div>
                 ))}
@@ -230,7 +230,7 @@ export default function About() {
       <section className="mx-auto max-w-7xl px-8 pb-20">
         <div className="mb-12 max-w-3xl">
           <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Curriculum Vitae</p>
-          <h2 className="mt-4 text-4xl font-bold text-white">Research thesis, experience, and certifications</h2>
+          <h2 className="mt-4 text-4xl font-bold text-theme">Research thesis, experience, and certifications</h2>
         </div>
 
         <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -239,16 +239,16 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.65, delay: 0.08, ease: "easeOut" }}
-            className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
+            className="rounded-[2rem] border border-theme bg-surface p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
           >
             <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">PhD Thesis</p>
-            <h3 className="mt-4 text-2xl font-semibold text-white">Design & fabrication of multiplex biosensors</h3>
-            <p className="mt-4 text-slate-300">
+            <h3 className="mt-4 text-2xl font-semibold text-theme">Design & fabrication of multiplex biosensors</h3>
+            <p className="mt-4 text-muted">
               Design and fabrication of biosensor for the measurement of glucose and urea in a single blood sample.
             </p>
-            <ul className="mt-6 space-y-3 text-slate-300">
+            <ul className="mt-6 space-y-3 text-muted">
               {thesisHighlights.map((highlight) => (
-                <li key={highlight} className="flex gap-3 text-slate-300">
+                <li key={highlight} className="flex gap-3 text-muted">
                   <span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"></span>
                   {highlight}
                 </li>
@@ -261,23 +261,23 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.65, delay: 0.16, ease: "easeOut" }}
-            className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
+            className="rounded-[2rem] border border-theme bg-surface p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
           >
             <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Professional Experience</p>
-            <div className="mt-4 space-y-6 text-slate-300">
+            <div className="mt-4 space-y-6 text-muted">
               <div>
-                <p className="font-semibold text-white">Assistant Professor</p>
-                <p className="mt-2 text-sm text-slate-400">School of Biomedical Engineering and Health Sciences, Shobhit Institute of Engineering and Technology</p>
+                <p className="font-semibold text-theme">Assistant Professor</p>
+                <p className="mt-2 text-sm text-muted-2">School of Biomedical Engineering and Health Sciences, Shobhit Institute of Engineering and Technology</p>
                 <p className="mt-2 text-cyan-300">Nov 2021 – Present</p>
               </div>
               <div>
-                <p className="font-semibold text-white">Research Associate</p>
-                <p className="mt-2 text-sm text-slate-400">School of Biomedical Engineering and Health Sciences, Shobhit Institute of Engineering and Technology</p>
+                <p className="font-semibold text-theme">Research Associate</p>
+                <p className="mt-2 text-sm text-muted-2">School of Biomedical Engineering and Health Sciences, Shobhit Institute of Engineering and Technology</p>
                 <p className="mt-2 text-cyan-300">Nov 2021 – Jul 2025</p>
               </div>
               <div>
-                <p className="font-semibold text-white">Biomedical Engineering Intern</p>
-                <p className="mt-2 text-sm text-slate-400">Aoratas Technica Engineering Pvt. Ltd., Delhi</p>
+                <p className="font-semibold text-theme">Biomedical Engineering Intern</p>
+                <p className="mt-2 text-sm text-muted-2">Aoratas Technica Engineering Pvt. Ltd., Delhi</p>
                 <p className="mt-2 text-cyan-300">Jun 2018 – Jan 2019</p>
               </div>
             </div>
@@ -288,20 +288,20 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.65, delay: 0.24, ease: "easeOut" }}
-            className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
+            className="rounded-[2rem] border border-theme bg-surface p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
           >
             <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Courses & Certifications</p>
-            <div className="mt-4 space-y-4 text-slate-300">
+            <div className="mt-4 space-y-4 text-muted">
               {additionalCourses.map((course) => (
                 <a
                   key={course.title}
                   href={course.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="block rounded-3xl border border-white/10 bg-white/5 p-4 transition hover:border-cyan-400/30 hover:bg-cyan-400/10"
+                  className="block rounded-3xl border border-theme bg-overlay p-4 transition hover:border-cyan-400/30 hover:bg-cyan-400/10"
                 >
-                  <p className="font-semibold text-white">{course.title}</p>
-                  <p className="mt-2 text-sm text-slate-400">{course.provider}</p>
+                  <p className="font-semibold text-theme">{course.title}</p>
+                  <p className="mt-2 text-sm text-muted-2">{course.provider}</p>
                 </a>
               ))}
             </div>
@@ -312,7 +312,7 @@ export default function About() {
       <section className="mx-auto max-w-7xl px-8 pb-20">
         <div className="mb-12 max-w-3xl">
           <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Awards & Workshops</p>
-          <h2 className="mt-4 text-4xl font-bold text-white">Recognition and professional development</h2>
+          <h2 className="mt-4 text-4xl font-bold text-theme">Recognition and professional development</h2>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3">
@@ -321,10 +321,10 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.65, delay: 0.08, ease: "easeOut" }}
-            className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
+            className="rounded-[2rem] border border-theme bg-surface p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
           >
             <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Awards</p>
-            <ul className="mt-6 space-y-3 text-slate-300">
+            <ul className="mt-6 space-y-3 text-muted">
               {awards.map((a) => (
                 <li key={a} className="flex gap-3">
                   <span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"></span>
@@ -339,10 +339,10 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.65, delay: 0.16, ease: "easeOut" }}
-            className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
+            className="rounded-[2rem] border border-theme bg-surface p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
           >
             <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Workshops</p>
-            <ul className="mt-6 space-y-3 text-slate-300">
+              <ul className="mt-6 space-y-3 text-muted">
               {workshops.map((w) => (
                 <li key={w} className="flex gap-3">
                   <span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"></span>
@@ -357,10 +357,10 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.65, delay: 0.24, ease: "easeOut" }}
-            className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
+            className="rounded-[2rem] border border-theme bg-surface p-8 shadow-[0_30px_90px_rgba(15,23,42,0.25)]"
           >
             <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Conference Abstracts</p>
-            <ul className="mt-6 space-y-3 text-slate-300">
+            <ul className="mt-6 space-y-3 text-muted">
               {abstracts.map((s) => (
                 <li key={s} className="flex gap-3">
                   <span className="mt-1 h-2 w-2 rounded-full bg-cyan-300"></span>

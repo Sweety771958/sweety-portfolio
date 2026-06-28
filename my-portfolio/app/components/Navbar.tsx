@@ -41,7 +41,7 @@ export default function Navbar() {
       variants={navVariants}
       initial="hidden"
       animate="visible"
-      className={`fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-slate-950/95 backdrop-blur-xl shadow-2xl shadow-slate-950/40 transition-all duration-300 ${scrolled ? "backdrop-brightness-90 py-3" : "py-4"}`}
+      className={`fixed inset-x-0 top-0 z-50 border-b border-theme bg-theme-95 backdrop-blur-xl shadow-2xl shadow-theme transition-all duration-300 ${scrolled ? "backdrop-brightness-90 py-3" : "py-4"}`}
     >
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-4 sm:px-8">
         <motion.div
@@ -55,19 +55,19 @@ export default function Navbar() {
           </div>
           <div>
             <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Dr. Sweety Pal</p>
-            <p className="text-xs text-slate-400">Biomedical Engineering</p>
+            <p className="text-xs text-muted-2">Biomedical Engineering</p>
           </div>
         </motion.div>
         <div className="flex items-center gap-3">
           <ThemeToggle />
         </div>
 
-        <motion.button
+          <motion.button
           type="button"
           aria-label="Toggle navigation"
           aria-expanded={open}
           whileTap={{ scale: 0.96 }}
-          className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-slate-200 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-300 sm:hidden"
+          className="inline-flex items-center justify-center rounded-full border border-theme bg-overlay p-2 text-muted-3 transition hover:bg-overlay focus:outline-none focus:ring-2 focus:ring-cyan-300 sm:hidden"
           onClick={() => setOpen((current) => !current)}
         >
           <span className="sr-only">Open menu</span>
@@ -77,11 +77,11 @@ export default function Navbar() {
           </svg>
         </motion.button>
 
-        <div className={`w-full overflow-hidden transition-all duration-300 ease-out sm:flex sm:w-auto ${open ? "max-h-[700px] opacity-100" : "max-h-0 opacity-0"} sm:max-h-full sm:opacity-100`}>
+          <div className={`w-full overflow-hidden transition-all duration-300 ease-out sm:flex sm:w-auto ${open ? "max-h-[700px] opacity-100" : "max-h-0 opacity-0"} sm:max-h-full sm:opacity-100`}>
           <motion.ul
             initial="hidden"
             animate="visible"
-            className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-slate-950/95 p-4 text-sm font-semibold text-slate-200 shadow-2xl shadow-slate-950/30 backdrop-blur-xl sm:flex-row sm:items-center sm:border-none sm:bg-transparent sm:p-0 sm:shadow-none sm:max-h-full sm:opacity-100"
+              className="flex flex-col gap-3 rounded-3xl border border-theme bg-theme-95 p-4 text-sm font-semibold text-muted-3 shadow-2xl shadow-soft backdrop-blur-xl sm:flex-row sm:items-center sm:border-none sm:bg-transparent sm:p-0 sm:shadow-none sm:max-h-full sm:opacity-100"
           >
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -89,7 +89,7 @@ export default function Navbar() {
                 <motion.li key={link.href} variants={itemVariants} whileHover={{ y: -2 }}>
                   <Link
                     href={link.href}
-                    className={`block rounded-full px-4 py-2 transition ${isActive ? "bg-cyan-400/15 text-cyan-300 ring-1 ring-cyan-300/30" : "hover:bg-white/10 hover:text-white"}`}
+                    className={`block rounded-full px-4 py-2 transition ${isActive ? "bg-cyan-400/15 text-cyan-300 ring-1 ring-cyan-300/30" : "hover:bg-overlay hover:text-theme"}`}
                     onClick={() => setOpen(false)}
                   >
                     {link.label}
