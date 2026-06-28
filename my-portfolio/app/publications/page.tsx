@@ -1,13 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
-const statFade: any = {
+const statFade: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (delay = 0) => ({ opacity: 1, y: 0, transition: { delay, duration: 0.55, ease: "easeOut" } }),
 };
 
-const cardFade: any = {
+const cardFade: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (delay = 0) => ({ opacity: 1, y: 0, transition: { delay, duration: 0.55, ease: "easeOut" } }),
 };

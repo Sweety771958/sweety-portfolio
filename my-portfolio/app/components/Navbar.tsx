@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
@@ -11,15 +11,17 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/research", label: "Research" },
   { href: "/publications", label: "Publications" },
+  { href: "/projects", label: "Projects" },
+  { href: "/cv", label: "CV" },
   { href: "/contact", label: "Contact" },
 ];
 
-const navVariants: any = {
+const navVariants: Variants = {
   hidden: { y: -24, opacity: 0 },
   visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as any } },
 };
 
-const itemVariants: any = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as any } },
 };

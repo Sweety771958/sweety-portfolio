@@ -1,15 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import StatsSection from "./components/StatsSection";
 
-const heroVariants: any = {
+const heroVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: "easeOut" } },
 };
 
-const cardVariants: any = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (delay = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.55, delay, ease: "easeOut" } }),
 };
