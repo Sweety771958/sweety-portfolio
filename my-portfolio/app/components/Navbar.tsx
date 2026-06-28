@@ -1,51 +1,105 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import ThemeToggle from "./ThemeToggle";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/research", label: "Research" },
+  { href: "/publications", label: "Publications" },
+  { href: "/contact", label: "Contact" },
+];
+
+const navVariants: any = {
+  hidden: { y: -24, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as any } },
+};
+
+const itemVariants: any = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as any } },
+};
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-5">
-        <h1 className="text-2xl font-bold text-blue-900">
-          Dr. Sweety Pal
-        </h1>
+    <motion.nav
+      variants={navVariants}
+      initial="hidden"
+      animate="visible"
+      className={`fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-slate-950/95 backdrop-blur-xl shadow-2xl shadow-slate-950/40 transition-all duration-300 ${scrolled ? "backdrop-brightness-90 py-3" : "py-4"}`}
+    >
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-4 sm:px-8">
+        <motion.div
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="flex items-center gap-4"
+        >
+          <div className="h-10 w-10 rounded-2xl bg-cyan-400/15 ring-1 ring-cyan-300/30 flex items-center justify-center text-lg font-black text-cyan-300">
+            S
+          </div>
+          <div>
+            <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">Dr. Sweety Pal</p>
+            <p className="text-xs text-slate-400">Biomedical Engineering</p>
+          </div>
+        </motion.div>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+        </div>
 
-        <ul className="flex gap-8 font-medium">
-          <li>
-            <Link href="/" className="text-black font-bold hover:text-blue-700">
-              Home
-            </Link>
-          </li>
+        <motion.button
+          type="button"
+          aria-label="Toggle navigation"
+          aria-expanded={open}
+          whileTap={{ scale: 0.96 }}
+          className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-slate-200 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-300 sm:hidden"
+          onClick={() => setOpen((current) => !current)}
+        >
+          <span className="sr-only">Open menu</span>
+          <svg className={`h-6 w-6 transition-transform duration-300 ${open ? "rotate-45" : "rotate-0"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d={open ? "M6 18L18 6" : "M4 6h16"} strokeLinecap="round" strokeLinejoin="round" />
+            <path d={open ? "M6 6l12 12" : "M4 12h16"} strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.button>
 
-          <li>
-            <Link href="/about" className="text-black font-bold hover:text-blue-700">
-              About
-            </Link>
-          </li>
-
-          <li>
-            <Link href="/research" className="text-black font-bold hover:text-blue-700">
-              Research
-            </Link>
-          </li>
-
-          <li>
-            <Link href="/projects" className="text-black font-bold hover:text-blue-700">
-              Projects
-            </Link>
-          </li>
-
-          <li>
-            <Link href="/publications" className="text-black font-bold hover:text-blue-700">
-              Publications
-            </Link>
-          </li>
-
-          <li>
-            <Link href="/contact" className="text-black font-bold hover:text-blue-700">
-              Contact
-            </Link>
-          </li>
-        </ul>
+        <div className={`w-full overflow-hidden transition-all duration-300 ease-out sm:flex sm:w-auto ${open ? "max-h-[700px] opacity-100" : "max-h-0 opacity-0"} sm:max-h-full sm:opacity-100`}>
+          <motion.ul
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-slate-950/95 p-4 text-sm font-semibold text-slate-200 shadow-2xl shadow-slate-950/30 backdrop-blur-xl sm:flex-row sm:items-center sm:border-none sm:bg-transparent sm:p-0 sm:shadow-none sm:max-h-full sm:opacity-100"
+          >
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <motion.li key={link.href} variants={itemVariants} whileHover={{ y: -2 }}>
+                  <Link
+                    href={link.href}
+                    className={`block rounded-full px-4 py-2 transition ${isActive ? "bg-cyan-400/15 text-cyan-300 ring-1 ring-cyan-300/30" : "hover:bg-white/10 hover:text-white"}`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+        </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
