@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,16 +19,21 @@ export const metadata: Metadata = {
   description: "Professional portfolio website for Dr. Sweety Pal, presenting research, publications, education, and contact information.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Force dark theme for server-rendered HTML (keeps preview consistently dark)
-  const htmlClass = `${geistSans.variable} ${geistMono.variable} h-full antialiased`;
+  // Determine initial theme from server cookie (if present)
+  const cookiesList = await cookies();
+  const themeCookie = cookiesList.get("theme");
+  const initialTheme = themeCookie ? (themeCookie.value === "light" ? "light" : "dark") : undefined;
+
+  const htmlClass = `${geistSans.variable} ${geistMono.variable} h-full antialiased` + (initialTheme === "light" ? " light" : "");
+  const dataTheme = initialTheme === "light" ? "light" : "dark";
 
   return (
-    <html lang="en" className={htmlClass} data-theme={"dark"}>
+    <html lang="en" className={htmlClass} data-theme={dataTheme}>
       <body className="min-h-full bg-theme text-theme">
         <Navbar />
         {children}
