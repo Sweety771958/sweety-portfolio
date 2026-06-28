@@ -16,7 +16,8 @@
 }
 
 /* Light mode overrides when `html` has the `light` class */
-.light {
+.light,
+[data-theme="light"] {
   --bg: #f8fafc;
   --fg: #0f172a;
   --card: rgba(248,250,252,0.95);

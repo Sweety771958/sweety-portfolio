@@ -12,10 +12,12 @@ export default function ThemeToggle() {
       if (stored) {
         setIsLight(stored === "light");
         document.documentElement.classList.toggle("light", stored === "light");
+        document.documentElement.setAttribute("data-theme", stored === "light" ? "light" : "dark");
       } else {
         // default: dark
         setIsLight(false);
         document.documentElement.classList.remove("light");
+        document.documentElement.setAttribute("data-theme", "dark");
       }
     } catch (e) {
       // ignore
@@ -29,6 +31,7 @@ export default function ThemeToggle() {
       localStorage.setItem("theme", next ? "light" : "dark");
     } catch (e) {}
     document.documentElement.classList.toggle("light", next);
+    document.documentElement.setAttribute("data-theme", next ? "light" : "dark");
   };
 
   return (
