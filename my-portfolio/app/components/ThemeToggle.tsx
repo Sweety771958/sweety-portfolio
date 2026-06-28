@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function ThemeToggle() {
   const [isLight, setIsLight] = useState(false);
+  const [liveMessage, setLiveMessage] = useState("");
 
   useEffect(() => {
     try {
@@ -23,6 +24,13 @@ export default function ThemeToggle() {
       // ignore
     }
   }, []);
+
+  useEffect(() => {
+    // update screen-reader live message when theme changes
+    setLiveMessage(isLight ? "Light mode enabled" : "Dark mode enabled");
+    const t = setTimeout(() => setLiveMessage(""), 2000);
+    return () => clearTimeout(t);
+  }, [isLight]);
 
   const toggle = () => {
     const next = !isLight;
@@ -50,10 +58,10 @@ export default function ThemeToggle() {
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={isLight ? "sun" : "moon"}
-          initial={{ opacity: 0, y: -4, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 4, scale: 0.9 }}
-          transition={{ duration: 0.18 }}
+          initial={{ opacity: 0, y: -4, scale: 0.9, rotate: 0 }}
+          animate={isLight ? { opacity: 1, y: 0, scale: [1, 1.06, 1], rotate: [0, 20, 0] } : { opacity: 1, y: 0, scale: [1, 1.03, 1], rotate: [0, 0, 0] }}
+          exit={{ opacity: 0, y: 4, scale: 0.9, rotate: 0 }}
+          transition={{ duration: 0.28, times: [0, 0.5, 1], type: "spring", stiffness: 300 }}
           className="flex items-center"
         >
           {isLight ? (
@@ -67,6 +75,9 @@ export default function ThemeToggle() {
           )}
         </motion.span>
       </AnimatePresence>
+      <span className="sr-only" aria-live="polite">
+        {liveMessage}
+      </span>
     </motion.button>
   );
 }
